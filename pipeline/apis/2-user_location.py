@@ -19,19 +19,18 @@ import requests
 import sys
 import time
 
-def get_user_location(api_url):
-    """Fetch and print the location of a GitHub user."""
-    response = requests.get(api_url)
-    
-    if response.status_code == 404:
+
+def get_user_location(url):
+    """Fetch and print GitHub user's location."""
+    r = requests.get(url)
+    if r.status_code == 404:
         print("Not found")
-    elif response.status_code == 403:
-        reset_time = int(response.headers.get("X-RateLimit-Reset", time.time()))
-        wait_time = int((reset_time - time.time()) / 60)
-        print("Reset in {} min".format(wait_time))
+    elif r.status_code == 403:
+        reset = int(r.headers.get("X-RateLimit-Reset", time.time()))
+        print("Reset in {} min".format(int((reset - time.time()) / 60)))
     else:
-        user_data = response.json()
-        print(user_data.get("location", "Not found"))
+        print(r.json().get("location", "Not found"))
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

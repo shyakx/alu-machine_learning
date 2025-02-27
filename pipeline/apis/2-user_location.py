@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GitHub User Location Script
+GitHub User Location Scripts
 
 This script fetches and prints the location of a specified GitHub user
 using the GitHub API.

@@ -2,7 +2,6 @@
 
 """Script that prints the location of a specific user"""
 
-
 import requests
 import sys
 import time
